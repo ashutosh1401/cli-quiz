@@ -241,19 +241,20 @@ async function questionNine() {
 
 async function questionTen() {
   const answers = await inquirer.prompt({
-    name:"question_9",
+    name:"question_10",
     type: "list",
     message: `What will be the output of the following code snippet?\n
-    console.log(0.1 + 0.2 === 0.3);`,
+    console.log(10 == [10]);
+    console.log(10 == [[[[[[[10]]]]]]]);`,
     choices: [
-      'Undefined',
-      'False',
-      'True',
-      'Error'
+      'True, True',
+      'False, True',
+      'True, False',
+      'False, False'
     ]
   })
 
-  return checkAnswer(answers.question_9 === "False")
+  return checkAnswer(answers.question_10 === "True, True")
 }
 
 console.clear();
@@ -265,4 +266,9 @@ await questionThree()
 await questionFour()
 await questionFive()
 await questionSix()
+await questionSeven()
+await questionEight()
+await questionNine()
+await questionTen()
+
 winner()
