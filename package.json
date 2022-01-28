@@ -1,13 +1,13 @@
 {
   "name": "cli-quiz-node",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "type": "module",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ashutosh1401/cli-quiz.git"
-},
+  },
   "scripts": {
     "start": "node index.js"
   },
