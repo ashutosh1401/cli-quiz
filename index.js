@@ -143,6 +143,7 @@ async function questionFive() {
     type: 'list',
     message: `
     What is the output of the following code snippet?\n
+
     print(NaN === NaN);`,
     choices: [
       'True',
@@ -155,6 +156,72 @@ async function questionFive() {
   return checkAnswer(answers.question_5 === "False")
 }
 
+async function questionSix() {
+  const answers = await inquirer.prompt({
+    name: 'question_6',
+    type: 'list',
+    message: `What will be the output of the following code snippet?\n
+
+    var a = "hello";
+    var sum = 0;
+    for(var i = 0; i < a.length; i++) {
+      sum += (a[i] - 'a');
+    }
+    print(sum);`,
+    choices: [
+      '47',
+      '0',
+      'NaN',
+      'Error',
+    ],
+  });
+
+  return checkAnswer(answers.question_6 === "NaN")
+}
+
+async function questionSeven() {
+  const answers = await inquirer.prompt({
+    name:"question_7",
+    type: "list",
+    message: `What will be the output of the following code snippet?\n
+    const set = new Set();
+    set.add(5);
+    set.add('Hello');
+    set.add({ name: 'Scaler' });
+    for (let item of set) {
+      console.log(item + 6);
+    }`,
+    choices: [
+      '11 NaN NaN',
+      '11 NaN [object Object]',
+      '11 Hello6 [object Object]6',
+      'None of the Above'
+    ]
+  })
+
+  return checkAnswer(answers.question_7 === "11 Hello6 [object Object]6")
+}
+
+async function questionEight() {
+  const answers = await inquirer.prompt({
+    name:"question_8",
+    type: "list",
+    message: `What will be the output of the following code snippet?\n
+    
+    const obj1 = {Name: "Hello", Age: 16};
+    const obj2 = {Name: "Hello", Age: 16};
+    print(obj1 === obj2);`,
+    choices: [
+      'Undefined',
+      'Error',
+      'True',
+      'False'
+    ]
+  })
+
+  return checkAnswer(answers.question_7 === "False")
+}
+
 console.clear();
 await entrance()
 await askName()
@@ -163,4 +230,5 @@ await questionTwo()
 await questionThree()
 await questionFour()
 await questionFive()
+await questionSix()
 winner()
