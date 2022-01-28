@@ -8,4 +8,6 @@ Created Simple JavaScript CLI quiz using nodejs.
 
 ### How to use
 
+`npm i cli-quiz-node`
+
 `npx cli-quiz-node`
