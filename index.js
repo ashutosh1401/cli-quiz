@@ -219,7 +219,41 @@ async function questionEight() {
     ]
   })
 
-  return checkAnswer(answers.question_7 === "False")
+  return checkAnswer(answers.question_8 === "False")
+}
+
+async function questionNine() {
+  const answers = await inquirer.prompt({
+    name:"question_9",
+    type: "list",
+    message: `What will be the output of the following code snippet?\n
+    console.log(0.1 + 0.2 === 0.3);`,
+    choices: [
+      'Undefined',
+      'False',
+      'True',
+      'Error'
+    ]
+  })
+
+  return checkAnswer(answers.question_9 === "False")
+}
+
+async function questionTen() {
+  const answers = await inquirer.prompt({
+    name:"question_9",
+    type: "list",
+    message: `What will be the output of the following code snippet?\n
+    console.log(0.1 + 0.2 === 0.3);`,
+    choices: [
+      'Undefined',
+      'False',
+      'True',
+      'Error'
+    ]
+  })
+
+  return checkAnswer(answers.question_9 === "False")
 }
 
 console.clear();
