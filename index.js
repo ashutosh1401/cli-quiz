@@ -9,6 +9,8 @@ import { createSpinner } from 'nanospinner'
 
 let playerName;
 
+let correctNo=0;
+
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
 async function entrance() {
@@ -33,8 +35,9 @@ async function checkAnswer(isCorrect) {
 
     if (isCorrect) {
         spinner.success({ text: `Nice work ${playerName}. That's a legit answer` });
+        correctNo++;
       } else {
-        spinner.error({ text: `💀💀💀 Game over, you lose ${playerName}!` });
+        spinner.error({ text: `💀💀💀 Game over, you lose ${playerName}!\n You scored ${correctNo}/10` });
         process.exit(1);
       }
 }
@@ -85,31 +88,38 @@ async function questionTwo() {
     const answers = await inquirer.prompt({
         name: 'question_2',
         type: 'list',
-        message: 'Which of the following keywords is used to define a variable in Javascript?\n',
+        message: `What will be the output of the following code snippet?\n
+        (function(){
+          setTimeout(()=> console.log(1),2000);
+          console.log(2);
+          setTimeout(()=> console.log(3),0);
+          console.log(4);
+         })();
+         `,
         choices: [
-          'var',
-          'let',
-          'Both',
-          'None of these',
+          '1 2 3 4',
+          '2 3 4 1',
+          '2 4 3 1',
+          '4 3 2 1',
         ],
       });
 
-      return checkAnswer(answers.question_2 === "Both")
+      return checkAnswer(answers.question_2 === "2 4 3 1")
 }
 async function questionThree() {
     const answers = await inquirer.prompt({
         name: 'question_3',
         type: 'list',
-        message: 'Which of the following methods can be used to display data in some form using Javascript? \n',
+        message: `What will be the output of the following code snippet?\n`,
         choices: [
-          'document.write()',
-          'console.log()',
-          'window.alert()',
-          'All of these',
+          '-Infinity Infinity',
+          'Infinity -Infinity',
+          'Infinity Infinity',
+          '-Infinity -Infinity',
         ],
       });
 
-      return checkAnswer(answers.question_3 === "All of these")
+      return checkAnswer(answers.question_3 === "-Infinity Infinity")
 }
 async function questionFour() {
     const answers = await inquirer.prompt({
@@ -127,6 +137,24 @@ async function questionFour() {
       return checkAnswer(answers.question_4 === "Object Serialization")
 }
 
+async function questionFive() {
+  const answers = await inquirer.prompt({
+    name: 'question_5',
+    type: 'list',
+    message: `
+    What is the output of the following code snippet?\n
+    print(NaN === NaN);`,
+    choices: [
+      'True',
+      'False',
+      'Undefined',
+      'Error',
+    ],
+  });
+
+  return checkAnswer(answers.question_5 === "False")
+}
+
 console.clear();
 await entrance()
 await askName()
@@ -134,4 +162,5 @@ await questionOne()
 await questionTwo()
 await questionThree()
 await questionFour()
+await questionFive()
 winner()
