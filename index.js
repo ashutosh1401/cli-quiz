@@ -110,7 +110,11 @@ async function questionThree() {
     const answers = await inquirer.prompt({
         name: 'question_3',
         type: 'list',
-        message: `What will be the output of the following code snippet?\n`,
+        message: `What will be the output of the following code snippet?\n
+        var a = Math.max();
+        var b = Math.min();
+        print(a);
+        print(b);`,
         choices: [
           '-Infinity Infinity',
           'Infinity -Infinity',
